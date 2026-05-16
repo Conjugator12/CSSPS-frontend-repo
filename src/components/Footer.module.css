@@ -1,0 +1,127 @@
+.footer {
+  background: var(--gray-900);
+  color: #fff;
+}
+
+.grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1.4fr 1fr 1fr; }
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandLogo img {
+  height: 52px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.brandName {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.brandSub {
+  font-size: 10px;
+  color: var(--gray-400);
+  line-height: 1.4;
+}
+
+.brandDesc {
+  font-size: 13px;
+  color: var(--gray-400);
+  line-height: 1.7;
+}
+
+/* Sections */
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.redBar {
+  width: 28px;
+  height: 2px;
+  background: var(--red);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resourceLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-400);
+  transition: color 0.15s;
+  text-decoration: none;
+}
+.resourceLink:hover { color: #fff; }
+
+.resourceLink svg { color: var(--gray-600); flex-shrink: 0; }
+
+.helpLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-400);
+}
+
+.helpLine svg { color: var(--red); flex-shrink: 0; }
+
+/* Bottom bar */
+.bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.bottomInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+@media (min-width: 600px) {
+  .bottomInner { flex-direction: row; }
+}
+
+.csspsRed { color: var(--red); font-weight: 600; }
+.logoImg {
+  height: 52px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}

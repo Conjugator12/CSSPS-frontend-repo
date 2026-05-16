@@ -1,0 +1,164 @@
+.page {
+  min-height: 100vh;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Minimal auth nav (replaced by Dev 2's component after merge) */
+.authNav {
+  background: var(--cream);
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.navInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.navLink:hover { color: var(--gray-800); }
+.navLinkActive { color: var(--gold); font-weight: 600; }
+
+/* Page body */
+.main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+.pageTitle { font-size: 24px; font-weight: 700; color: var(--gray-900); }
+.pageSub   { font-size: 13px; color: var(--gray-500); margin-top: 4px; margin-bottom: 24px; }
+
+/* Centered states (loading, placed, success) */
+.stateCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 48px 0;
+  text-align: center;
+}
+
+.stateCenter p { font-size: 14px; font-weight: 500; color: var(--gray-700); }
+.stateCenter .note { font-size: 13px; color: var(--gray-500); max-width: 320px; line-height: 1.6; }
+
+.successIcon { color: var(--green); }
+
+/* Form */
+.form { display: flex; flex-direction: column; gap: 22px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+/* School search */
+.searchWrap { position: relative; }
+
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  pointer-events: none;
+  display: flex;
+}
+
+.dropdown {
+  margin-top: 2px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: #fff;
+}
+
+.dropdownItem {
+  width: 100%;
+  text-align: left;
+  padding: 11px 16px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.dropdownItem:last-child { border-bottom: none; }
+.dropdownItem:hover { background: var(--gray-50); }
+
+.schoolMeta { font-size: 11px; color: var(--gray-400); margin-left: 6px; }
+
+/* Residency toggle */
+.residencyRow { display: flex; gap: 10px; }
+
+.residencyBtn {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.residencyBtnActive {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+/* Confirm banner */
+.confirmBanner {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.confirmBanner p { font-size: 13px; font-weight: 500; color: var(--blue-dark); }
+.confirmBanner span { font-size: 11px; color: #3b82f6; margin-top: 2px; display: block; }
+
+/* Submit */
+.submitBtn {
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+
+/* Footer note */
+.footnote {
+  text-align: center;
+  font-size: 11px;
+  color: var(--gray-400);
+  padding: 12px 0 20px;
+}

@@ -1,0 +1,79 @@
+.nav {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 42px;
+  width: auto;
+}
+
+.logoText {
+  display: none;
+}
+@media (min-width: 600px) {
+  .logoText { display: block; }
+}
+
+.logoName {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.logoSub {
+  font-size: 9px;
+  color: var(--gray-500);
+  line-height: 1.3;
+}
+
+/* CTA pill group */
+.pillGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.pillBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.pillBtn:hover { background: var(--gray-50); }
+
+.pillBtn + .pillBtn {
+  border-left: 1px solid var(--gray-200);
+}
