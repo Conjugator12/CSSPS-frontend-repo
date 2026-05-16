@@ -119,3 +119,20 @@
   transition: background 0.15s;
 }
 .printBtn:hover { background: var(--blue-dark); }
+
+.resultMessage {
+  font-size: 12px;
+  color: #166534;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dcfce7;
+  line-height: 1.5;
+}
+.resultMessage {
+  font-size: 12px;
+  color: #166534;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dcfce7;
+  line-height: 1.5;
+}

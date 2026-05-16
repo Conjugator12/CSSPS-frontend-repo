@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { loginStudent, logoutStudent } from '../services/api'
+import { loginStudent } from '../services/api'
 
 const AuthContext = createContext(null)
 
@@ -17,9 +17,11 @@ export function AuthProvider({ children }) {
     setLoading(false)
   }, [])
 
-  const login = async (index_number, pin) => {
-    const { data } = await loginStudent(index_number, pin)
-    const { token: newToken, student } = data
+  // Backend response shape: { access_token, token_type, student: { ... } }
+  const login = async (index_number, date_of_birth) => {
+    const { data } = await loginStudent(index_number, date_of_birth)
+    const newToken = data.access_token
+    const student  = data.student
     localStorage.setItem('cssps_token', newToken)
     localStorage.setItem('cssps_user', JSON.stringify(student))
     setToken(newToken)
@@ -27,10 +29,7 @@ export function AuthProvider({ children }) {
     return student
   }
 
-  const logout = async () => {
-    try { await logoutStudent() } catch { /* ignore */ }
-    clearAuth()
-  }
+  const logout = () => clearAuth()
 
   const clearAuth = () => {
     localStorage.removeItem('cssps_token')
@@ -40,7 +39,11 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated: Boolean(token && user), loading }}>
+    <AuthContext.Provider value={{
+      user, token, login, logout,
+      isAuthenticated: Boolean(token && user),
+      loading,
+    }}>
       {children}
     </AuthContext.Provider>
   )

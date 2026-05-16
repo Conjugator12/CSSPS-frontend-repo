@@ -1,30 +1,77 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
 const api = axios.create({
   baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
 })
 
-// Attach JWT token to every request automatically
+// Attach JWT to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('cssps_token')
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 })
 
-// ── Auth ──────────────────────────────────────────────
-export const loginStudent  = (index_number, pin) => api.post('/auth/login', { index_number, pin })
-export const logoutStudent = ()                  => api.post('/auth/logout')
+// Normalise error messages from the backend's ErrorResponse shape:
+// { error, message, status_code, timestamp, request_id }
+api.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    const data = err.response?.data
+    // Backend returns { message: "..." } — surface it as a readable string
+    if (data?.message) {
+      err.userMessage = data.message
+    } else if (data?.detail) {
+      err.userMessage = Array.isArray(data.detail)
+        ? data.detail.map((d) => d.msg).join(', ')
+        : data.detail
+    } else {
+      err.userMessage = 'Something went wrong. Please try again.'
+    }
+    return Promise.reject(err)
+  }
+)
 
-// ── Public placement checker (no auth needed) ─────────
-export const checkPlacementPublic = (index_number) => api.get(`/placement/check/${index_number}`)
+// ── Auth ──────────────────────────────────────────────────────────────────────
+// POST /api/auth/student/login  →  { index_number, date_of_birth }
+// Response: { access_token, token_type, student: { ... } }
+export const loginStudent = (index_number, date_of_birth) =>
+  api.post('/api/auth/student/login', { index_number, date_of_birth })
 
-// ── Self-placement ────────────────────────────────────
-export const getSelfPlacementStatus = ()        => api.get('/self-placement/status')
-export const searchSchools          = (q, prog) => api.get('/schools/search', { params: { q, programme: prog } })
-export const submitSelfPlacement    = (payload) => api.post('/self-placement/submit', payload)
-export const getProgrammes          = ()        => api.get('/programmes')
+// GET /api/auth/student/me
+export const getStudentMe = () =>
+  api.get('/api/auth/student/me')
+
+// ── Public placement check ────────────────────────────────────────────────────
+// POST /check-placement  — no auth needed, full candidate request body
+// Minimal public lookup only needs index_number; we fill dummy required fields
+// so the service can still look up by index_number against the DB.
+// If your backend adds a lighter GET lookup later, swap this out.
+export const checkPlacementPublic = (index_number) =>
+  api.get(`/api/placements/check-placement/${index_number}`)
+
+// ── Authenticated placement endpoints ─────────────────────────────────────────
+// GET /api/placements/check-placement/{index_number}
+export const getMyPlacement = (index_number) =>
+  api.get(`/api/placements/check-placement/${index_number}`)
+
+// ── Self-placement ────────────────────────────────────────────────────────────
+export const getSelfPlacementStatus = () =>
+  api.get('/api/placements/self-placement/status')
+
+export const searchSchools = (query, programme) =>
+  api.get('/api/placements/schools/search', { params: { q: query, programme } })
+
+export const submitSelfPlacement = (payload) =>
+  api.post('/api/placements/self-placement/submit', payload)
+
+export const getProgrammes = () =>
+  api.get('/api/placements/programmes')
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+export const healthCheck = () => api.get('/health')
+export const getStats    = () => api.get('/stats')
 
 export default api

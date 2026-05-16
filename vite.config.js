@@ -6,9 +6,12 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // Proxy API calls to Flask during development so no CORS issues
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+      '/check-placement': {
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
     },
