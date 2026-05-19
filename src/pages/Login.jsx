@@ -1,42 +1,47 @@
-import { useState } from 'react'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import csspsLogo from '../assets/cssps-logo.png'
-import s from './Login.module.css'
+import { useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import csspsLogo from "../assets/cssps-logo.png";
+import s from "./Login.module.css";
 
 export default function Login() {
-  const { login, isAuthenticated } = useAuth()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from     = location.state?.from?.pathname || '/hub'
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/hub";
 
-  if (isAuthenticated) { navigate(from, { replace: true }); return null }
+  if (isAuthenticated) {
+    navigate(from, { replace: true });
+    return null;
+  }
 
-  const [form, setForm]     = useState({ index_number: '', date_of_birth: '' })
-  const [loading, setLoading] = useState(false)
-  const [error, setError]   = useState('')
+  const [form, setForm] = useState({ index_number: "", date_of_birth: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const onChange = (e) => {
-    setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
-    setError('')
-  }
+    setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+    setError("");
+  };
 
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!form.index_number || !form.date_of_birth) {
-      setError('Please enter your index number and date of birth.')
-      return
+      setError("Please enter your index number and date of birth.");
+      return;
     }
-    setLoading(true)
+    setLoading(true);
     try {
-      await login(form.index_number.trim(), form.date_of_birth)
-      navigate(from, { replace: true })
+      await login(form.index_number.trim(), form.date_of_birth);
+      navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid index number or date of birth.')
+      setError(
+        err.response?.data?.detail || "Invalid index number or date of birth.",
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className={s.page}>
@@ -48,9 +53,10 @@ export default function Login() {
 
       <div className={`card ${s.formCard}`}>
         <form onSubmit={onSubmit} className={s.form}>
-
           <div className={s.field}>
-            <label className={s.label} htmlFor="index_number">Index Number</label>
+            <label className={s.label} htmlFor="index_number">
+              Index Number
+            </label>
             <input
               id="index_number"
               name="index_number"
@@ -65,7 +71,9 @@ export default function Login() {
           </div>
 
           <div className={s.field}>
-            <label className={s.label} htmlFor="date_of_birth">Date of Birth</label>
+            <label className={s.label} htmlFor="date_of_birth">
+              Date of Birth
+            </label>
             <input
               id="date_of_birth"
               name="date_of_birth"
@@ -80,29 +88,57 @@ export default function Login() {
 
           {error && (
             <div className="alert alert-error">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{flexShrink:0,marginTop:1}} aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                style={{ flexShrink: 0, marginTop: 1 }}
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
               {error}
             </div>
           )}
 
-          <button type="submit" disabled={loading} className={`btn-primary ${s.submitBtn}`}>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`btn-primary ${s.submitBtn}`}
+          >
             {loading && (
-              <span className="spinner" style={{width:15,height:15,borderTopColor:'#fff',borderColor:'rgba(255,255,255,0.3)'}} />
+              <span
+                className="spinner"
+                style={{
+                  width: 15,
+                  height: 15,
+                  borderTopColor: "#fff",
+                  borderColor: "rgba(255,255,255,0.3)",
+                }}
+              />
             )}
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
 
         <p className={s.help}>
-          Having trouble?{' '}
-          <a href="tel:0207337515">Call 020 733 7515</a>
+          Having trouble? <a href="tel:0207337515">Call 020 733 7515</a>
         </p>
       </div>
 
-      <Link to="/" className={s.back}>← Back to home</Link>
+      <Link to="/admin/login" className={s.back}>
+        Login As Administrator
+      </Link>
+      <Link to="/" className={s.back}>
+        ← Back to home
+      </Link>
       <p className={s.footnote}>© 2026 – Powered by COLDSIS</p>
     </div>
-  )
+  );
 }

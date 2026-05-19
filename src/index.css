@@ -1,56 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 /* ── Variables ─────────────────────────────────────── */
 :root {
-  --gold:        #D4A017;
-  --gold-dark:   #b8890f;
-  --cream:       #FEFAE8;
-  --dark:        #1A2340;
-  --red:         #C0392B;
-  --red-dark:    #a93226;
-  --green:       #27ae60;
-  --blue:        #2563eb;
-  --blue-dark:   #1d4ed8;
+  --gold: #d4a017;
+  --gold-dark: #b8890f;
+  --cream: #fefae8;
+  --dark: #1a2340;
+  --red: #c0392b;
+  --red-dark: #a93226;
+  --green: #27ae60;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
 
-  --gray-50:     #f9fafb;
-  --gray-100:    #f3f4f6;
-  --gray-200:    #e5e7eb;
-  --gray-300:    #d1d5db;
-  --gray-400:    #9ca3af;
-  --gray-500:    #6b7280;
-  --gray-600:    #4b5563;
-  --gray-700:    #374151;
-  --gray-800:    #1f2937;
-  --gray-900:    #111827;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
 
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   16px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 
-  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md:   0 4px 16px rgba(0,0,0,0.12);
-  --shadow-lg:   0 8px 32px rgba(0,0,0,0.16);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
 
-  --transition:  all 0.2s ease;
+  --transition: all 0.2s ease;
 }
 
 /* ── Reset ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background-color: var(--cream);
   color: var(--gray-800);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-input, select, textarea { font-family: inherit; }
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-img { display: block; max-width: 100%; }
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
 
 /* ── Shared reusable classes ───────────────────────── */
 
@@ -68,8 +91,13 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius-full);
   transition: var(--transition);
 }
-.btn-primary:hover { background: var(--red-dark); }
-.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 
 .btn-gold {
   display: inline-flex;
@@ -84,7 +112,9 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius-md);
   transition: var(--transition);
 }
-.btn-gold:hover { background: var(--gold-dark); }
+.btn-gold:hover {
+  background: var(--gold-dark);
+}
 
 .btn-outline {
   display: inline-flex;
@@ -100,7 +130,9 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--gray-300);
   transition: var(--transition);
 }
-.btn-outline:hover { background: var(--gray-100); }
+.btn-outline:hover {
+  background: var(--gray-100);
+}
 
 /* Inputs */
 .input-field {
@@ -116,9 +148,11 @@ img { display: block; max-width: 100%; }
 }
 .input-field:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212,160,23,0.15);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.15);
 }
-.input-field::placeholder { color: var(--gray-400); }
+.input-field::placeholder {
+  color: var(--gray-400);
+}
 
 /* Card */
 .card {
@@ -138,10 +172,26 @@ img { display: block; max-width: 100%; }
   padding: 14px 16px;
   font-size: 13px;
 }
-.alert-error  { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
-.alert-warn   { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
-.alert-success{ background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
-.alert-info   { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
+.alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+.alert-warn {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+.alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+.alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
 
 /* Spinner */
 .spinner {
@@ -153,7 +203,11 @@ img { display: block; max-width: 100%; }
   animation: spin 0.7s linear infinite;
   flex-shrink: 0;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Page loading overlay */
 .page-loading {
@@ -166,4 +220,33 @@ img { display: block; max-width: 100%; }
   background: var(--cream);
   color: var(--gray-500);
   font-size: 13px;
+}
+
+/* Core Layout Themes & Variables */
+:root {
+  --bg-app-workspace: #f8fafc;
+  --surface-panel: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-subtle: #e2e8f0;
+
+  --accent-primary: #4f46e5;
+  --accent-primary-hover: #4338ca;
+  --accent-danger: #ef4444;
+  --accent-danger-hover: #dc2626;
+  --accent-success: #10b981;
+
+  --radius-interactive: 8px;
+  --radius-panel: 12px;
+  --shadow-card:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --transition-smooth: all 0.2s ease-in-out;
+}
+
+/* Apply base font and backgrounds smoothly */
+body {
+  background-color: var(--bg-app-workspace);
+  color: var(--text-main);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
